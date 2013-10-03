@@ -23,7 +23,7 @@ require_once '../common.php';
 					while(typeof name != "string"){
 						name = "<?php echo $_SESSION['user'];?>";
 						if(name == null || name == "")
-							name = "guest";
+							name = "guest<?php echo rand(01,99)?>";
 					}
 					ws.send("name="+name);
                                         document.getElementById("msg").focus();

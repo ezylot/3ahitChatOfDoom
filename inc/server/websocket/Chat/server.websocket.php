@@ -69,7 +69,7 @@ function process($user,$msg){
   }
   
   if(preg_match("/^\/?name[=\s](.*)/",$action,$match)){ $name=$match[1]; }
-  if(isset($name))
+  if(isset($name) && ($user->name == "" || $user->name == null || empty($user->name) || $user->id== $mastersocket))
   {
 	if(empty($name))
 		return disconnect($user->socket);
@@ -399,6 +399,9 @@ class User{
   var $socket;
   var $handshake;
   var $name;
+  
+  //ipadresse für z.B. Rechte verteilung aufgrund der ips
+  var $ip;
 }
 
 ?>
