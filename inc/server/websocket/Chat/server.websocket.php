@@ -45,6 +45,8 @@ function process($user,$msg){
   if($opcode == 136 ||$opcode == 8) return disconnect($user->socket);
   $action = decode($msg);
   
+  if(count($action) > 512) return send($user->socket, "<span class='error'>Your entered text was too long</span>");
+  
   if(preg_match("/^\/rename #?(\d{2,4}) (.*)/",$action,$match)){ $idtorename=$match[1]; $newname=$match[2]; }
   if(isset($idtorename) && isset($newname))
 	{
@@ -189,9 +191,11 @@ function send($client,$msg){
 function sendall($source,$msg){
   global $sockets,$users;
   $n=count($users);
+  if($source != NULL){
   $nachr = "<span class='user'>".getuserbysocket($source)->name . "</span>: ".$msg;
   $log = $GLOBALS['log'];
   $log(getuserbysocket($source)->name . " : " . $msg , true);
+  } else { $nachr = $msg; }
   for($i=0;$i<$n;$i++){
     send($users[$i]->socket, $nachr);
   }  
@@ -220,9 +224,9 @@ function WebSocket($address,$port){
   socket_set_option($master, SOL_SOCKET, SO_REUSEADDR, 1)  or die("socket_option() failed");
   socket_bind($master, $address, $port)                    or die("socket_bind() failed");
   socket_listen($master,20)                                or die("socket_listen() failed");
-  echo "\r\nServer Started : ".date('Y-m-d H:i:s')."\r\n";
-  echo "Master socket  : ".$master."\r\n";
-  echo "Listening on   : ".$address." port ".$port."\r\n\r\n";
+  say(PHP_EOL . "Server Started : ".date('Y-m-d H:i:s'));
+  say("Master socket  : ".$master);
+  say("Listening on   : ".$address." port ".$port);
   return $master;
 }
 
@@ -233,8 +237,7 @@ function connect($socket){
   $user->socket = $socket;
   array_push($users,$user);
   array_push($sockets,$socket);
-  //$log($socket." CONNECTED!", true);
-  
+  //$log($socket." CONNECTED!", true);  
 }
 
 function disconnect($socket){
@@ -244,14 +247,16 @@ function disconnect($socket){
   for($i=0;$i<$n;$i++){
     if($users[$i]->socket==$socket){ $found=$i; break; }
   }
+  say(getuserbysocket($socket)->name." disconnected!");
+  sendall(NULL, getuserbysocket($socket)->name." disconnected!");
   if(!is_null($found)){ array_splice($users,$found,1); }
   $index = array_search($socket,$sockets);
   socket_close($socket);
-  say($socket." DISCONNECTED!");
   if($index>=0){ array_splice($sockets,$index,1); }
 }
 
 function dohandshake($user,$buffer){
+  global $users;
   console("\nRequesting handshake...");
   list($resource,$host,$origin,$strkey,$data) = getheaders($buffer);
   console("Handshaking...");
@@ -270,6 +275,13 @@ function dohandshake($user,$buffer){
   $user->handshake=true;
   console($upgrade);
   console("Done handshaking...");
+  	if(count($users) > MAX_CLIENTS || count($users) > 128)
+	{
+            say("Server Room Full".PHP_EOL);
+		$tofull = "You could not connect, because the room is full(".(count($users)-1)."/".(MAX_CLIENTS).")";
+		send($user->socket,$tofull); 
+		return disconnect($user->socket);
+	}
   return true;
 }
 
