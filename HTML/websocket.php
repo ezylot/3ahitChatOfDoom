@@ -10,6 +10,7 @@ require_once '../common.php';
 			var ws;
 			function doit()
 			{
+				document.getElementById("chat").innerHTML += "Connecting...<br />";
 				if(WebSocket)
 					ws = new WebSocket("ws://<?php require_once $_SERVER['DOCUMENT_ROOT'].'/settings.php'; echo WEBSOCKET_SERVER_IP.":"; echo WEBSOCKET_PORT; ?>/");
 				else
