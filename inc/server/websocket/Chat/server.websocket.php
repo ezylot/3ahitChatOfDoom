@@ -61,7 +61,7 @@ function process($user,$msg){
 				send($usertorename->socket,"<span class='error'>You were renamed by the admin</span>");
                 $log = $GLOBALS['log'];
                 $log("User " . $usertorename->name ." was renamed by the amdin to ".$newname, true);
-				sendall($user->socket, "<span class='info'>User " . $usertorename->name ."(". $kick. ") was renamed by the amdin to ".$newname . "</span>");				
+				sendall($user->socket, "<span class='info'>User " . $usertorename->name ." was renamed by the amdin to ".$newname . "</span>");				
 				
 				return $usertorename->name = $newname;
             }
