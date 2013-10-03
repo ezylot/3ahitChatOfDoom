@@ -1,0 +1,95 @@
+INSTALLATION
+
+    1. Set you individual settings in the Settings.php File
+    2. Switch the Plugins you want or dont want in the plugin_activation.php File
+
+NEW FILE
+
+    Just make a new PHP file
+    Use this as a template
+        <?php
+            require_once 'common.php';
+            System\HTML::printHead();
+                //Place additional script or style or meta etc. in here
+            
+
+            System\HTML::printBody("");
+                //As a parameter u can give attributes for the body
+                // like "oncklick, style, onload, etc"
+                //Place ur body text here
+
+            System\HTML::printFooter();
+        ?>
+	
+	This will print the tags like docktype, head, charset etc.
+	It will take the last html5 docktype and set the character set to utf8
+	
+Avariable GET-Parameters for any File
+        time    --shows the detailed times to build the website in milliseconds
+                example www.example.com?time
+
+
+    ALL FOLLOWING ORDERS NEED ANOTHER PARAMETER 'console' TO RUN
+    ALSO NEEDS THE CONSOLE PLUGIN IN THE plugin_activation.php TO BE ACTIVATET 
+        info    --shows a info text
+                www.example.com?console&info
+
+        getLog  --shows the Logs from the Logfile
+                www.example.com?console&getLog
+
+        deleteLog --deletes the LOG File from the current date
+                www.example.com?console&deleteLog
+
+        destroySession --destroys the Current Session and makes a new one
+                www.example.com?console&destroySession
+
+    PARAMETERS CAN ALSO BE STACKED LIKE
+    www.example.com?console&info&getLog
+
+LOGIN
+    If you want to draw a new LOGIN Form you can use the following command
+
+        $login->drawLoginForm("scripts/login.php");
+
+    The Script from the Parameter is the Script where the User's Data will be sent
+    to validate him. Standart is "scripts/login.php" but you can change it
+
+REGISTER
+    If you want to draw a new Register Form you can use the following command
+
+        $login->drawRegisterForm("scripts/register.php");
+
+    The Script from the Parameter is the Script where the User's Data will be sent
+    to register. Standart is "scripts/register.php" but you can change it
+
+STYLE
+    You can make a cool button just by giving the button the class="awsome-button"
+    For example:
+        <input type="submit" class="awsome-button" />
+
+    You can make a tooltip for an element your choise...
+    Just give it the class="tooltip" and put the text for the tooltip into the title atribute
+    For example:
+        <a href="" title="This is some info for our tooltip." class="tooltip">Tooltip</a>
+
+AJAX
+    There's a simple AJAX template. You can use it with the Javascript Function
+    ajax(elementToChange, siteToRead).. 
+    The first Parameter is an element choosen by you, which you want to change..
+    You can use, for example, a div or a p ...
+    The second Parameter is a site where to get the answer from...
+CHAT
+	So... there is a Chat-Client in the HTML fodler. You have to start the chat-server manuelly, by 
+	dragging the ws-server_start.php File (which is in the root directory) on the PHP.exe.. If you are using xampp it 
+	will be most times C:\xampp\php\php.exe
+	If you want to use it, you should change the WEBSOCKET_MASTER_PASSWORD in settings.php ... It's "testpassword" by
+	default.
+		If you enter this password at the Client as your name  Afeter using the password as your name the server will change your name to "[ADMIN]" and now you are
+		able to use a few commands:
+		
+		/kick <RESOURCE_ID>  	-> 	kicks the specified ID (for example "/kick #12" or "/kick 13" 
+									[you can write with or without the #]). You see the RecourceID at the connection
+									of the user, or you use the /list command
+		/list		  	-> 	Returns you a list of online users in a "<RESOURCE_ID> = <NAME>" - format				
+									
+		

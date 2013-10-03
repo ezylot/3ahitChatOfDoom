@@ -1,0 +1,49 @@
+/* 
+    Document   : norm.css
+    Created on : 02.04.2013, 13:00:16
+    Author     : Florian
+    Description:
+        Makes the styles look the same as the nativ thing
+*/
+
+/*First normalize the damn matgin/padding automatic set*/
+div, dl, dt, dd, ul, li, h1, h2, h3, h4 ,h5, h6, pre, 
+form, fieldset, input, p, blockquote, th, td
+{
+    margin:0;
+    padding: 0;
+}
+
+/*
+Makes the list images etc. looks in every browser standardt
+*/
+ol, ul
+{
+    list-style: none;
+}
+/*THIS FUCKING TABLES HAVE TO LOOK NORMAL*/
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*delets border from images and fieldsets*/
+fieldset, img
+{
+    border: 0;
+    vertical-align: bottom;
+}
+/*Delets the quotes before and after q*/
+q:before, q:after
+{
+    content: '';
+}
+
+/*Awares that the **** Chrome makes input boxes yellow!!!!*/
+
+input[type="text"],input[type="password"], input[type="email"]
+{
+    background-color: white !important;
+    margin: 0.5px;
+}
