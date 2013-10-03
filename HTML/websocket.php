@@ -73,8 +73,8 @@ require_once '../common.php';
 ?>
 <header>
 <input type="button" onClick="sendit();" value="Senden" class="button" />
-<input type="button" onClick="closeit();" value="Schliessen" class="button" />
 <input type="text" id="msg" placeholder="Ihre Nachricht: " onKeyDown='this.style.setProperty("background-color", "white", "important");'>
+<input style="float: right; margin-right: 100px; margin-top: 4px;" type="button" onClick="closeit();" value="Schliessen" class="button" />
 </header>
 <div id="chat"></div>
 <script type="text/javascript">
