@@ -67,27 +67,36 @@ function process($user,$msg){
         }
   }
   
-  if(preg_match("/name[=\s](.*)/",$action,$match)){ $name=$match[1]; }
+  if(preg_match("/^\/?name[=\s](.*)/",$action,$match)){ $name=$match[1]; }
   if(isset($name))
   {
 	if(empty($name))
 		return disconnect($user->socket);
 	else
 	{
-		if($name == $masterpw)
-                {
-                    $mastersocket = $user->id;
-                    $user->name="[ADMIN]";
-                    echo $user->socket;
-                    return renameuser($user);                    
-                }
-                else
-                {
-                    $user->name = $name;
-                    return renameuser($user);
-                }
+        $user->name = $name;
+        return renameuser($user);
 	}
   }
+    if(preg_match("/\/sudo (.*)/",$action,$match)){ $pw=$match[1]; }
+	if(isset($pw))
+	{	
+  		if($pw == $masterpw)
+       {
+            $mastersocket = $user->id;
+            $user->name="[ADMIN]";
+            return renameuser($user);                    
+		else if($pw == "")
+		{
+			return send($user->socket, "<span class='info'>False Sytax. Use /sudo <masterpassword></span>");
+		}
+		else
+		{
+			return send($user->socket, "<span class='info'>You entered the wrong password</span>");
+		}
+	}
+  
+  
   
   if(preg_match("/^\/kick[=\s](#(\d{2,4})|(\d{2,4})|(.*))/",$action,$match)){ $kick=$match[1]; }
   if(isset($kick))
