@@ -11,8 +11,8 @@ $sockets = array($master);
 $users   = array();
 $debug   = false;
 
-$help = "Welcome to the Chat.\n You can access the following commands:<br />\t/help<br />\t/list";
-$helpadmin = "Welcome to the Chat.\n You can access the following commands:<br />\t/help<br />\t/list<br />\t/kick<br />\t/name";
+$help = "Welcome to the Chat.\n You can access the following commands:<br />\t/help<br />\t/list<br />\t/sudo &lt;adminpassword&gt;";
+$helpadmin = "Welcome to the Chat.\n You can access the following commands:<br />\t/help<br />\t/sudo &lt;adminpassword&gt;<br />\t/list<br />\t/kick &lt;id&gt;<br />\t/name &lt;yournewname&gt;<br />\t/rename &lt;id&gt; &lt;idsnewname&gt;";
 
 while(true){
 
