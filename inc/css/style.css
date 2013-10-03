@@ -1,0 +1,411 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*Link Style*/
+
+a {
+	color: #545454;
+	text-decoration:none;	
+}
+
+a:hover {
+	color: #484848;	
+}
+
+a:active {
+	/*color: #0394ed;*/
+}
+
+/*Site*/
+
+body {
+	box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+	background-color: #F7F7F7;
+	width: 100%;
+	height: 1200px;
+}
+
+header {
+	border-top: 2px solid #555555;
+	border-bottom: 2px solid #555555;
+	width: 100%;
+	height: 60px;
+	margin: 0px auto;
+    background: #F7F7F7;
+	position: fixed;
+	top: 0px;
+	float: left;
+}
+
+/* Chat */
+
+.user {
+	font-weight: bold;
+}
+head {
+    font-size: 150%;    
+}
+#chat{
+	margin: 70px 10px 0px 10px;
+	display: block;
+    height: 100%;
+    border: 1px solid black;
+	background-color: #e6e6e6;
+    overflow: auto !important;
+}
+#wrapper{
+    width: 100%;
+    height: 700px;
+}
+#msg {
+    margin-top:v4px;
+    width: 350px;
+}
+.info{
+    color: mediumseagreen;
+}
+
+/* Normalize */
+
+/* 
+    Document   : norm.css
+    Created on : 02.04.2013, 13:00:16
+    Author     : Florian
+    Description:
+        Makes the styles look the same as the nativ thing
+*/
+
+/*First normalize the damn matgin/padding automatic set*/
+div, dl, dt, dd, ul, li, h1, h2, h3, h4 ,h5, h6, pre, 
+form, fieldset, input, p, blockquote, th, td, body
+{
+    margin:0;
+    padding: 0;
+}
+
+/*
+Makes the list images etc. looks in every browser standardt
+*/
+ol, ul
+{
+    list-style: none;
+}
+/*THIS FUCKING TABLES HAVE TO LOOK NORMAL*/
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*delets border from images and fieldsets*/
+fieldset, img
+{
+    border: 0;
+    vertical-align: bottom;
+}
+/*Delets the quotes before and after q*/
+q:before, q:after
+{
+    content: '';
+}
+
+/*Awares that the **** Chrome makes input boxes yellow!!!!*/
+
+input[type="text"],input[type="password"], input[type="email"]
+{
+    background-color: white !important;
+    margin: 0.5px;
+}
+
+/*Button*/
+
+/*.button {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	background-color:#d4d4d4;
+	
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:3px solid #b4b4b4;
+	
+	color:#777777;
+	display:inline-block;
+	font-size:19px;
+	padding:4px 25px;
+	text-decoration:none;
+}.button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e0e0e0), color-stop(1, #d4d4d4) ); 
+	background:-moz-linear-gradient( center top, #e0e0e0 5%, #d4d4d4 100% );
+	background-color: #e0e0e0;
+}.button:active {
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;	
+	position:relative;
+	top:1px;
+}*/
+
+.button
+{	
+	border-width: 1px;
+	border-style: solid;
+	border-color: #696969;
+	
+	-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;   		
+
+	background-color: #f9f9f9;
+	height: auto;
+	margin: 0px;
+    padding: 5px 10px;
+	width: auto;
+	cursor: pointer;
+	display:inline-block;
+	color: #23441e;
+	
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	
+		-webkit-transition:all 0.4s ease;-moz-transition:all 0.4s ease;-0-transition:all 0.4s ease;transition:all 0.4s ease;
+}
+
+.button:hover
+{		
+	background-color: #f2f2f2;
+}	
+
+.button:active
+{		
+	margin-top: 1px;
+	-moz-box-shadow: 0 0 3px 1px #d9d9d9 inset;
+	-webkit-box-shadow: 0 0 3px 1px #d9d9d9 inset;
+	box-shadow: 0 0 3px 1px #d9d9d9 inset; 	
+}
+
+.blue-border-left {
+	border-left: 3px solid #31a7dd!important;
+}
+
+.blue-border-right {
+	border-right: 3px solid #31a7dd!important;
+}
+
+.blue-border-top {
+	border-top: 3px solid #31a7dd!important;
+}
+
+.blue-border-bottom {
+	border-bottom: 3px solid #31a7dd!important;
+}
+
+.button::-moz-focus-inner
+{
+       border: 0;  /* Small centering fix for Firefox */
+}
+
+/*Slide Button*/
+
+.slide-btn{
+    background: linear-gradient(top, #80a9da 0%,#6f97c5 100%);
+    padding-left: 20px;
+    padding-right: 80px;
+    height: 30px;
+    display: inline-block;
+    position: relative;
+    border: 1px solid #5d81ab;
+/*    box-shadow: 
+		0px 1px 1px rgba(255,255,255,0.8) inset, 
+		1px 1px 3px rgba(0,0,0,0.2), 
+		0px 0px 0px 4px rgba(188,188,188,0.5);*/
+    border-radius: 20px;
+    float: left;
+    clear: both;
+    margin: 10px 0px;
+    overflow: hidden;
+    transition: all 0.3s linear;
+}
+.slide-btn-text{
+    padding-top: 5px;
+    display: block;
+    font-size: 16px;
+    white-space: nowrap;
+    text-shadow: 0px 1px 1px rgba(255,255,255,0.3);
+    color: #446388;
+    transition: all 0.2s linear;
+}
+.slide-btn-slide-text{
+    position:absolute;
+    height: 100%;
+    top: 0px;
+    right: 52px;
+    width: 0px;
+    background: #63707e;
+    text-shadow: 0px -1px 1px #363f49;
+    color: #fff;
+    font-size: 16px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    text-align: left;
+    text-indent: 10px;
+    overflow: hidden;
+    line-height: 30px;
+    box-shadow: 
+		-1px 0px 1px rgba(255,255,255,0.4), 
+		1px 1px 2px rgba(0,0,0,0.2) inset;
+    transition: width 0.3s linear;
+}
+.slide-btn-icon-right{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 100%;
+    width: 52px;
+    border-left: 1px solid #5d81ab;
+    box-shadow: 1px 0px 1px rgba(255,255,255,0.4) inset;
+}
+.slide-btn-icon-right span{
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -20px 0px 0px -20px;
+    background: transparent url(../images/arrow_right.png) no-repeat 50% 55%;
+    transition: all 0.3s linear;
+}
+
+.slide-btn:hover{
+    padding-right: 180px;
+/*    box-shadow: 0px 1px 1px rgba(255,255,255,0.8) inset, 1px 1px 3px rgba(0,0,0,0.2);*/
+}
+.slide-btn:hover .slide-btn-text{
+/*    text-shadow: 0px 1px 1px #5d81ab;
+    color: #fff;*/
+}
+.slide-btn:hover .slide-btn-slide-text{
+    width: 100px;
+}
+.slide-btn:hover .slide-btn-icon-right span{
+    opacity: 1;
+}
+
+.slide-btn:active {
+    position: relative;
+    top: 1px;
+    background: #5d81ab;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.4) inset;
+    border-color: #80a9da;
+}
+
+/* General button style (reset) */
+.btn {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 25px 80px;
+	display: inline-block;
+	margin: 15px 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+/* Pseudo elements for icons */
+.btn:before {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+}
+
+.btn-1 {
+	border: 3px solid #fff;
+	color: #fff;
+}
+
+/* Button 1e */
+.btn-1e {
+	overflow: hidden;
+}
+
+.btn-1e:after {
+	width: 100%;
+	height: 0;
+	top: 50%;
+	left: 50%;
+	background: #fff;
+	opacity: 0;
+	-webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+	-moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+	-ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+	transform: translateX(-50%) translateY(-50%) rotate(45deg);
+}
+
+.btn-1e:hover,
+.btn-1e:active {
+	color: #0e83cd;
+}
+
+.btn-1e:hover:after {
+	height: 260%;
+	opacity: 1;
+}
+
+.btn-1e:active:after {
+	height: 400%;
+	opacity: 1;
+}
+
+
+/* MSG Textbox */
+#msg
+{
+	padding: 5px 9px;
+	height: 23px;
+	font: normal 13px 'trebuchet MS', arial, helvetica;
+	background: #ffffff;
+	
+	border: 1px solid #e2e3ea;
+	border-top: 1px solid #abadb3;
+
+	-moz-border-radius: 3px 3px 3px 3px;
+	 border-radius: 3px 3px 3px 3px;       
+}
+
+
+#msg:hover
+{
+	border: 1px solid #c5daed;
+}
+
+
+#msg:active
+{
+	-moz-box-shadow:    0px 0px 0px 1px #c5daed;
+	-webkit-box-shadow: 0px 0px 0px 1px #c5daed;
+	box-shadow:         0px 0px 0px 1px #c5daed;    
+}
