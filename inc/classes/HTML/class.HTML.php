@@ -40,6 +40,7 @@ class HTML {
         echo '<script src="/inc/js/jquery-1.9.1.min.js"></script>'.PHP_EOL.PHP_EOL;
         
         echo '<link rel="stylesheet" type="text/css" href="/inc/css/default.css.php" />'.PHP_EOL;
+		echo '<link rel="stylesheet" type="text/css" href="/inc/css/style.css" />'.PHP_EOL;
         echo '<script src="/inc/js/default.js" type="text/javascript"></script>'.PHP_EOL.PHP_EOL;
     }
     
