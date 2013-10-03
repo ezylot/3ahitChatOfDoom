@@ -45,7 +45,7 @@ function process($user,$msg){
   if($opcode == 136 ||$opcode == 8) return disconnect($user->socket);
   $action = decode($msg);
   
-  if(preg_match("/^\/rename #?(\d){2,3} (.*)/",$action,$match)){ $idtorename=$match[0]; $newname=$match[1]; }
+  if(preg_match("/^\/rename #?(\d{2,4}) (.*)/",$action,$match)){ $idtorename=$match[1]; $newname=$match[2]; }
   if(isset($idtorename) && isset($newname))
 	{
         if($user->id != $mastersocket) return send($user->socket,"You tried to accsess to an command you aren't allowed to use!");
@@ -60,9 +60,10 @@ function process($user,$msg){
             {
 				send($usertorename->socket,"<span class='error'>You were renamed by the admin</span>");
                 $log = $GLOBALS['log'];
-                $log("User " . $usertokick->name ."(". $kick. ") was renamed by the amdin to ".$newname, true);                                
-				$usertokick->name = $newname;
-				return sendall($user->socket, "<span class='info'>User " . $usertokick->name ."(". $kick. ") was renamed by the amdin to ".$newname . "</span>");
+                $log("User " . $usertorename->name ." was renamed by the amdin to ".$newname, true);
+				sendall($user->socket, "<span class='info'>User " . $usertorename->name ."(". $kick. ") was renamed by the amdin to ".$newname . "</span>");				
+				
+				return $usertorename->name = $newname;
             }
         }
   }
