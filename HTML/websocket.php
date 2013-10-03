@@ -36,7 +36,7 @@ require_once '../common.php';
 				ws.onmessage = function(msg)
 				{
 					document.getElementById("chat").innerHTML += msg.data+"<br />";
-                                        document.getElementById("chat").scrollTop=document.getElementById("chat").scrollHeight;
+                                        document.getElementById("chat").scrollTop += 100;
 					console.log("Mesage recived...");
 				};
 				ws.onclose = function()
