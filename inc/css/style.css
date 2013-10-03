@@ -48,6 +48,7 @@ head {
 #chat{
 	margin: 70px 10px 0px 10px;
 	display: block;
+	min-height: 480px;
     height: 100%;
     border: 1px solid black;
 	background-color: #e6e6e6;
