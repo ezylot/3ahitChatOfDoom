@@ -75,13 +75,15 @@ require_once '../common.php';
     <head>
     	<h1>Awesome Title</h1>
     </head>
-    <input type="button" onClick="doit();" value="Connect" class="awsome-button" />
     <input type="button" onClick="sendit();" value="Senden" class="awsome-button" />
     <input type="button" onClick="closeit();" value="Schliessen" class="awsome-button" />
     <br /><input type="text" id="msg" placeholder="Ihre Nachricht: " onKeyDown='this.style.setProperty("background-color", "white", "important");'>
     <div id="chat">
     </div>
 </div>
+<script type="text/javascript">
+    doit();
+</script>
 <?php
 \System\HTML::printFooter();
 ?>
