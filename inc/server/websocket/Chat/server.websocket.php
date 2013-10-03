@@ -182,7 +182,7 @@ function process($user,$msg){
 }
 
 function send($client,$msg){
-  $msg = wrap($msg);
+  $msg = wrap("<span class='date'>".date("H:i:s", time())."</span>".$msg);
   socket_write($client,$msg,strlen(($msg)));
 }
 
