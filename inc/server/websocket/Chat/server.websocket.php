@@ -45,6 +45,28 @@ function process($user,$msg){
   if($opcode == 136 ||$opcode == 8) return disconnect($user->socket);
   $action = decode($msg);
   
+  if(preg_match("/^\/rename #?(\d){2,3} (.*)/",$action,$match)){ $idtorename=$match[0]; $newname=$match[1]; }
+  if(isset($idtorename) && isset($newname))
+	{
+        if($user->id != $mastersocket) return send($user->socket,"You tried to accsess to an command you aren't allowed to use!");
+		else
+		{
+            $usertorename = getuserbyresource($idtorename);
+            if ($usertorename == false)
+            {
+                return send($user->socket,"Recource ID not found");
+            }
+            else
+            {
+				send($usertorename->socket,"<span class='error'>You were renamed by the admin</span>");
+                $log = $GLOBALS['log'];
+                $log("User " . $usertokick->name ."(". $kick. ") was renamed by the amdin to ".$newname, true);                                
+				$usertokick->name = $newname;
+				return sendall($user->socket, "<span class='info'>User " . $usertokick->name ."(". $kick. ") was renamed by the amdin to ".$newname . "</span>");
+            }
+        }
+  }
+  
   if(preg_match("/name[=\s](.*)/",$action,$match)){ $name=$match[1]; }
   if(isset($name))
   {
