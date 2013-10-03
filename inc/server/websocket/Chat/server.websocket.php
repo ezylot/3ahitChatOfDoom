@@ -41,6 +41,7 @@ while(true){
 function process($user,$msg){
   global $masterpw;
   global $mastersocket;
+  global $maxLen;
   $value = unpack('H*', $msg[0]);
   $opcode =  base_convert($value[1], 16, 10);
   if($opcode == 136 ||$opcode == 8) return disconnect($user->socket);
@@ -102,11 +103,11 @@ function process($user,$msg){
 	if(isset($len))
 	{
         if($user->id != $mastersocket) return send($user->socket,"<span class='error'>You tried to accsess to an command you aren't allowed to use!</span>");
-		if(empty($kick))
+		if(empty($len))
 			return send($user->socket,"<span class='error'>No lenght specified</span>");
 		else
 		{
-			$maxLen = $len;
+                    return $maxLen = $len;
 		}
 	}
   
