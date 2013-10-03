@@ -36,7 +36,7 @@ require_once '../common.php';
 				ws.onmessage = function(msg)
 				{
 					document.getElementById("chat").innerHTML += msg.data+"<br />";
-                                        document.getElementById("chat").scrollTop=document.getElementById("chat").scrollHeight 
+                                        document.getElementById("chat").scrollTop=document.getElementById("chat").scrollHeight;
 					console.log("Mesage recived...");
 				};
 				ws.onclose = function()
@@ -72,9 +72,9 @@ require_once '../common.php';
 \System\HTML::printBody("");
 ?>
 <header>
-<input type="button" onClick="sendit();" value="Senden" class="button" />
-<input type="text" id="msg" placeholder="Ihre Nachricht: " onKeyDown='this.style.setProperty("background-color", "white", "important");'>
-<input style="float: right; margin-right: 100px; margin-top: 4px;" type="button" onClick="closeit();" value="Schliessen" class="button" />
+    <input type="button" onClick="sendit();" value="Senden" class="button" />
+    <input type="text" id="msg" placeholder="Ihre Nachricht: " onKeyDown='this.style.setProperty("background-color", "white", "important");'>
+    <input style="float: right; margin-right: 100px; margin-top: 4px;" type="button" onClick="closeit();" value="Schliessen" class="button" />
 </header>
 <div id="chat"></div>
 <script type="text/javascript">
