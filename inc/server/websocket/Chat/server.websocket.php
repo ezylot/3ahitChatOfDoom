@@ -10,9 +10,10 @@ $master  = WebSocket(WEBSOCKET_SERVER_IP ,WEBSOCKET_PORT);
 $sockets = array($master);
 $users   = array();
 $debug   = false;
+$maxLen = 512;
 
 $help = "Welcome to the Chat.\n You can access the following commands:<br />\t/help<br />\t/list<br />\t/sudo &lt;adminpassword&gt;";
-$helpadmin = "Welcome to the Chat.\n You can access the following commands:<br />\t/help<br />\t/sudo &lt;adminpassword&gt;<br />\t/list<br />\t/kick &lt;id&gt;<br />\t/name &lt;yournewname&gt;<br />\t/rename &lt;id&gt; &lt;idsnewname&gt;";
+$helpadmin = "Welcome to the Chat.\n You can access the following commands:<br />\t/help<br />\t/sudo &lt;adminpassword&gt;<br />\t/list<br />\t/kick &lt;id&gt;<br />\t/name &lt;yournewname&gt;<br />\t/rename &lt;id&gt; &lt;idsnewname&gt;<br />\t/setMaxLen &lt;length&gt; \/\/Set the maximal amount of characters per message";
 
 while(true){
 
@@ -44,8 +45,7 @@ function process($user,$msg){
   $opcode =  base_convert($value[1], 16, 10);
   if($opcode == 136 ||$opcode == 8) return disconnect($user->socket);
   $action = decode($msg);
-  
-  if(count($action) > 512) return send($user->socket, "<span class='error'>Your entered text was too long</span>");
+  if(strlen($action) > $maxLen) return send($user->socket, "<span class='error'>Your entered text was too long</span>");
   
   if(preg_match("/^\/rename #?(\d{2,4}) (.*)/",$action,$match)){ $idtorename=$match[1]; $newname=$match[2]; }
   if(isset($idtorename) && isset($newname))
@@ -98,7 +98,17 @@ function process($user,$msg){
 			return send($user->socket, "<span class='error'>You entered the wrong password</span>");
 		}
 	}
-  
+	if(preg_match("/^\/setMaxLen[=\s](\d{1,4})/",$action,$match)){ $len=$match[1]; }
+	if(isset($len))
+	{
+        if($user->id != $mastersocket) return send($user->socket,"<span class='error'>You tried to accsess to an command you aren't allowed to use!</span>");
+		if(empty($kick))
+			return send($user->socket,"<span class='error'>No lenght specified</span>");
+		else
+		{
+			$maxLen = $len;
+		}
+	}
   
   
   if(preg_match("/^\/kick[=\s](#(\d{2,4})|(\d{2,4})|(.*))/",$action,$match)){ $kick=$match[1]; }
