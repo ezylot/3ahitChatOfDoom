@@ -10,7 +10,7 @@
 \define('ACTIVATE_STATISTIC', true);
 
 #Switches the visibility of the "Website was built in.."-sentence
-\define('SHOW_BUILD_TIME', TRUE);
+\define('SHOW_BUILD_TIME', FALSE);
 
 #Switches the Console-Plugin and Parameters which are transfered as GET Parameters
 \define('ENABLE_CONSOLE', TRUE);

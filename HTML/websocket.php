@@ -71,13 +71,12 @@ require_once '../common.php';
 #Place additional script or style or meta etc. in here
 \System\HTML::printBody("");
 ?>
-	<header>
-    <input type="button" onClick="sendit();" value="Senden" class="button" />
-    <input type="button" onClick="closeit();" value="Schliessen" class="button" />
-    <input type="text" id="msg" placeholder="Ihre Nachricht: " onKeyDown='this.style.setProperty("background-color", "white", "important");'>
-    </header>
-    <div id="chat">
-    </div>
+<header>
+<input type="button" onClick="sendit();" value="Senden" class="button" />
+<input type="button" onClick="closeit();" value="Schliessen" class="button" />
+<input type="text" id="msg" placeholder="Ihre Nachricht: " onKeyDown='this.style.setProperty("background-color", "white", "important");'>
+</header>
+<div id="chat"></div>
 <script type="text/javascript">
     doit();
 </script>
