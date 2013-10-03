@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once '../common.php';
 
 \System\HTML::printHead();
@@ -21,9 +21,9 @@ require_once '../common.php';
 					console.log("Conectet...");
 					var name;
 					while(typeof name != "string"){
-						name = prompt("Please enter your name: ");
-						if(name == null)
-							return ws.close();
+						name = "<?php echo $_SESSION['user'];?>";
+						if(name == null || name == "")
+							name = "guest";
 					}
 					ws.send("name="+name);
                                         document.getElementById("msg").focus();
