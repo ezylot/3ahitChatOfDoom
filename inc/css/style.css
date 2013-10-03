@@ -47,13 +47,13 @@ head {
     font-size: 150%;    
 }
 #chat{
-	margin: 70px 0px 0px 0px;
+	margin: 70px 0px 100px 0px;
 	display: block;
 	height: 90%;
     overflow: auto !important;
 	position: absolute; 
 	top: 0px; left:0px; right:0px;
-	margin-bottom: 100px;
+	padding-left:7px;
 }
 #wrapper{
     width: 100%;
