@@ -86,7 +86,7 @@ function process($user,$msg){
             $mastersocket = $user->id;
             $user->name="[ADMIN]";
             return renameuser($user);                    
-		else if($pw == "")
+		} else if($pw == "")
 		{
 			return send($user->socket, "<span class='info'>False Sytax. Use /sudo <masterpassword></span>");
 		}
