@@ -7,7 +7,7 @@ head {
 #chat{
     margin: 10px;
     width: calc(100% - 20px);
-    min-height: 580px;
+    min-height: 480px;
     max-height: 580px;
     border: 1px solid black;
     overflow: auto !important;
