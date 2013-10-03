@@ -1,4 +1,4 @@
-INSTALLATION
+INSTALLATIONa
 
     1. Set you individual settings in the Settings.php File
     2. Switch the Plugins you want or dont want in the plugin_activation.php File
