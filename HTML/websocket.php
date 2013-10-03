@@ -72,9 +72,9 @@ require_once '../common.php';
 \System\HTML::printBody("");
 ?>
 <div id="wrapper">
-    <head>
+    <header>
     	<h1>Schöffls Webchat</h1>
-    </head>
+    </header>
     <input type="button" onClick="sendit();" value="Senden" class="awsome-button" />
     <input type="button" onClick="closeit();" value="Schliessen" class="awsome-button" />
     <br /><input type="text" id="msg" placeholder="Ihre Nachricht: " onKeyDown='this.style.setProperty("background-color", "white", "important");'>
