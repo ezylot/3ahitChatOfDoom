@@ -48,7 +48,7 @@ function process($user,$msg){
   if(preg_match("/^\/rename #?(\d{2,4}) (.*)/",$action,$match)){ $idtorename=$match[1]; $newname=$match[2]; }
   if(isset($idtorename) && isset($newname))
 	{
-        if($user->id != $mastersocket) return send($user->socket,"You tried to accsess to an command you aren't allowed to use!");
+        if($user->id != $mastersocket) return send($user->socket,"<span class='error'>You tried to accsess to an command you aren't allowed to use!</span>");
 		else
 		{
             $usertorename = getuserbyresource($idtorename);
@@ -58,7 +58,7 @@ function process($user,$msg){
             }
             else
             {
-				send($usertorename->socket,"<span class='error'>You were renamed by the admin</span>");
+				send($usertorename->socket,"<span class='info'>You were renamed by the admin</span>");
                 $log = $GLOBALS['log'];
                 $log("User " . $usertorename->name ." was renamed by the amdin to ".$newname, true);
 				sendall($user->socket, "<span class='info'>User " . $usertorename->name ." was renamed by the amdin to ".$newname . "</span>");				
@@ -89,11 +89,11 @@ function process($user,$msg){
             return renameuser($user);                    
 		} else if($pw == "")
 		{
-			return send($user->socket, "<span class='info'>False Sytax. Use /sudo <masterpassword></span>");
+			return send($user->socket, "<span class='error'>False Sytax. Use /sudo <masterpassword></span>");
 		}
 		else
 		{
-			return send($user->socket, "<span class='info'>You entered the wrong password</span>");
+			return send($user->socket, "<span class='error'>You entered the wrong password</span>");
 		}
 	}
   
@@ -102,9 +102,9 @@ function process($user,$msg){
   if(preg_match("/^\/kick[=\s](#(\d{2,4})|(\d{2,4})|(.*))/",$action,$match)){ $kick=$match[1]; }
   if(isset($kick))
   {
-        if($user->id != $mastersocket) return send($user->socket,"You tried to accsess to an command you aren't allowed to use!");
+        if($user->id != $mastersocket) return send($user->socket,"<span class='error'>You tried to accsess to an command you aren't allowed to use!</span>");
 	if(empty($kick))
-		return send($user->socket,"Recource ID empty");
+		return send($user->socket,"<span class='error'>Recource ID empty</span>");
 	else
 	{
             if(intval($match[1]) != 0)
@@ -114,12 +114,12 @@ function process($user,$msg){
             }
             else
             {
-                return send($user->socket,"Recource ID not numerical");
+                return send($user->socket,"<span class='error'>Recource ID not numerical</span>");
             }
             $usertokick = getuserbyresource($kick);
             if ($usertokick == false)
             {
-                return send($user->socket,"Recource ID not found");
+                return send($user->socket,"<span class='error'>Recource ID not found</span>");
             }
             else
             {
@@ -155,13 +155,13 @@ function process($user,$msg){
     if(preg_match("/^\/rename #?(\d){2,3} (.*)/",$action,$match)){ $idtorename=$match[0]; $newname=$match[1]; }
 	if(isset($idtorename) && isset($newname))
 	{
-        if($user->id != $mastersocket) return send($user->socket,"You tried to accsess to an command you aren't allowed to use!");
+        if($user->id != $mastersocket) return send($user->socket,"<span class='error'>You tried to accsess to an command you aren't allowed to use!</span>");
 		else
 		{
             $usertorename = getuserbyresource($idtorename);
             if ($usertorename == false)
             {
-                return send($user->socket,"Recource ID not found");
+                return send($user->socket,"<span class='error'>Recource ID not found</span>");
             }
             else
             {
@@ -176,7 +176,7 @@ function process($user,$msg){
   
   say($user->name.": ".$action);
   switch($action){
-        case ""  : send($user->socket,"No message recived");  break;
+        case ""  : send($user->socket,"<span class='error'><b>No message recived</b></span>");  break;
     default      : sendall($user->socket,$action);   			  break;
   }
 }
