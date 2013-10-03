@@ -37,7 +37,7 @@ require_once '../common.php';
 				ws.onmessage = function(msg)
 				{
 					document.getElementById("chat").innerHTML += msg.data+"<br />";
-                    document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+                    document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
 					console.log("Mesage recived...");
 				};
 				ws.onclose = function()
@@ -48,25 +48,25 @@ require_once '../common.php';
 			}
 			function sendit()
 			{
-                            if(document.getElementById("msg").value == "") 
-                                document.getElementById("msg").style.setProperty("background-color", "red", "important");
-                            else
-                            {                                 
-                                ws.send(document.getElementById("msg").value); 
-                                document.getElementById("msg").value = "";
-                            }                        
-                        document.getElementById("msg").focus();
-                        }
+				if(document.getElementById("msg").value == "") 
+					document.getElementById("msg").style.setProperty("background-color", "red", "important");
+				else
+				{                                 
+					ws.send(document.getElementById("msg").value); 
+					document.getElementById("msg").value = "";
+				}                        
+				document.getElementById("msg").focus();
+				}
 			function closeit()
 			{
 				ws.close();
 			}
-                        document.onkeydown = function(e)
-                         {
-                          var key = window.event ? window.event.keyCode : e.which;
-                          if(key == 13)
-                               sendit();
-                         }
+			document.onkeydown = function(e)
+			{
+			  	var key = window.event ? window.event.keyCode : e.which;
+			  	if(key == 13)
+				   	sendit();
+			}
 		</script>
 <?php
 #Place additional script or style or meta etc. in here
