@@ -10,10 +10,13 @@ $master  = WebSocket(WEBSOCKET_SERVER_IP ,WEBSOCKET_PORT);
 $sockets = array($master);
 $users   = array();
 $debug   = false;
-$maxLen = 512;
+$maxLen = MAM_MESSAGE_LENGTH;
+$roomLimit = MAX_CLIENTS;
 
 $help = "Welcome to the Chat.\n You can access the following commands:<br />\t/help<br />\t/list<br />\t/sudo &lt;adminpassword&gt;";
-$helpadmin = "Welcome to the Chat.\n You can access the following commands:<br />\t/help<br />\t/sudo &lt;adminpassword&gt;<br />\t/list<br />\t/kick &lt;id&gt;<br />\t/name &lt;yournewname&gt;<br />\t/rename &lt;id&gt; &lt;idsnewname&gt;<br />\t/setMaxLen &lt;length&gt; \/\/Set the maximal amount of characters per message";
+$helpadmin = "Welcome to the Chat.\n You can access the following commands:<br />\t/help<br />\t/sudo &lt;adminpassword&gt;<br />\t/list<br />\t/kick &lt;id&gt;<br />\t/name &lt;yournewname&gt;".
+			 "<br />\t/rename &lt;id&gt; &lt;idsnewname&gt;<br />\t/setMaxLen &lt;length&gt; \/\/Set the maximal amount of characters per message<br />\t/setRoomLimit &lt;newSize&gt; ".
+			 "\/\/Set the limit of connected clients";
 
 while(true){
 
@@ -42,6 +45,7 @@ function process($user,$msg){
   global $masterpw;
   global $mastersocket;
   global $maxLen;
+  global $roomLimit;
   $value = unpack('H*', $msg[0]);
   $opcode =  base_convert($value[1], 16, 10);
   if($opcode == 136 ||$opcode == 8) return disconnect($user->socket);
@@ -99,6 +103,21 @@ function process($user,$msg){
 			return send($user->socket, "<span class='error'>You entered the wrong password</span>");
 		}
 	}
+	
+	if(preg_match("/^\/setRoomLimit[=\s](\d{1,3})/",$action,$match)){ $newsize=$match[1]; }
+	if(isset($newsize))
+	{
+        if($user->id != $mastersocket) return send($user->socket,"<span class='error'>You tried to accsess to an command you aren't allowed to use!</span>");
+		if(empty($newsize))
+			return send($user->socket,"<span class='error'>No RoomSize specified</span>");
+		else
+		{
+                    $roomLimit = $newsize;
+                    say("Room limit set to ".$roomLimit);
+					return;
+		}
+	}
+
 	if(preg_match("/^\/setMaxLen[=\s](\d{1,4})/",$action,$match)){ $len=$match[1]; }
 	if(isset($len))
 	{
@@ -258,7 +277,7 @@ function disconnect($socket, $nomessage = false){
   for($i=0;$i<$n;$i++){
     if($users[$i]->socket==$socket){ $found=$i; break; }
   }
-  if(!$nomassage) { 
+  if(!$nomessage) { 
 	say(getuserbysocket($socket)->name." disconnected!");
 	sendall(NULL, getuserbysocket($socket)->name." disconnected!");
   }
@@ -270,6 +289,7 @@ function disconnect($socket, $nomessage = false){
 
 function dohandshake($user,$buffer){
   global $users;
+  global $roomLimit;
   console("\nRequesting handshake...");
   list($resource,$host,$origin,$strkey,$data) = getheaders($buffer);
   console("Handshaking...");
@@ -288,10 +308,11 @@ function dohandshake($user,$buffer){
   $user->handshake=true;
   console($upgrade);
   console("Done handshaking...");
-  	if(count($users) > MAX_CLIENTS || count($users) > 128)
+  	if(count($users) > $roomLimit || count($users) > 128)
 	{
-        say("Server Room Full".PHP_EOL);
-		$tofull = "You could not connect, because the room is full(".(count($users)-1)."/".(MAX_CLIENTS).")";
+        say("Server Room Full");
+		$tofull = "You could not connect, because the room is full(".(count($users)-1)."/".($roomLimit).")";
+		var_dump($roomLimit,count($users) );
 		send($user->socket,$tofull); 
 		return disconnect($user->socket, true);
 	}

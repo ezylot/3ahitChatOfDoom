@@ -15,10 +15,13 @@ define('DB_Password',"");
 define('DB_NAME',"testac");
 
 #Here start the configuration for the Real-Time-Chat.. aka websocket-chat
-define('WEBSOCKET_PORT', 8023);
+define('WEBSOCKET_PORT', 17033);
 define('WEBSOCKET_MASTER_PASSWORD', "123456789");
-define('WEBSOCKET_SERVER_IP', "127.0.0.1");
+define('WEBSOCKET_SERVER_IP', "192.168.43.104");
 define('MAX_CLIENTS', 3);
+
+//Max Message Length which can be send in the chat
+define('MAM_MESSAGE_LENGTH', 512);
 
 #Zeigt detailierte Zeiten wenn der GETparameter time gesetzt ist
 if(isset($_GET['time']))
