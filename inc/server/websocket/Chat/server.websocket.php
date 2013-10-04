@@ -265,6 +265,7 @@ function connect($socket){
   $user = new User();
   $user->id = uniqid();
   $user->socket = $socket;
+  $user->ip = getRealIP();
   array_push($users,$user);
   array_push($sockets,$socket);
   //$log($socket." CONNECTED!", true);  
@@ -450,4 +451,14 @@ class User{
   var $ip;
 }
 
+function getRealIP()
+{
+    if(isset($_SERVER['HTTP_X_FORWARDED_FOR']) && isset($_SERVER['HTTP_X_FORWARDED_FOR'])!= "unknown")
+        $realip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    elseif (isset($_SERVER['HTTP_CLIENT_IP'])) 
+        $realip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    else
+        $realip=$_SERVER['REMOTE_ADDR']; 
+    return $realip;
+}
 ?>
