@@ -1,5 +1,5 @@
 <?php
-header('refresh:2;url=/index.php');
+header('refresh:1;url=/index.php');
 require_once '../common.php';
 
 function check()

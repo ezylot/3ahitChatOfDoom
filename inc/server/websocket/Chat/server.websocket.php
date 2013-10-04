@@ -251,15 +251,17 @@ function connect($socket){
   //$log($socket." CONNECTED!", true);  
 }
 
-function disconnect($socket){
+function disconnect($socket, $nomessage = false){
   global $sockets,$users;
   $found=null;
   $n=count($users);
   for($i=0;$i<$n;$i++){
     if($users[$i]->socket==$socket){ $found=$i; break; }
   }
-  say(getuserbysocket($socket)->name." disconnected!");
-  sendall(NULL, getuserbysocket($socket)->name." disconnected!");
+  if(!$nomassage) { 
+	say(getuserbysocket($socket)->name." disconnected!");
+	sendall(NULL, getuserbysocket($socket)->name." disconnected!");
+  }
   if(!is_null($found)){ array_splice($users,$found,1); }
   $index = array_search($socket,$sockets);
   socket_close($socket);
@@ -288,10 +290,10 @@ function dohandshake($user,$buffer){
   console("Done handshaking...");
   	if(count($users) > MAX_CLIENTS || count($users) > 128)
 	{
-            say("Server Room Full".PHP_EOL);
+        say("Server Room Full".PHP_EOL);
 		$tofull = "You could not connect, because the room is full(".(count($users)-1)."/".(MAX_CLIENTS).")";
 		send($user->socket,$tofull); 
-		return disconnect($user->socket);
+		return disconnect($user->socket, true);
 	}
   return true;
 }
