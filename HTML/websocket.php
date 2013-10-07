@@ -7,6 +7,7 @@ require_once '../common.php';
 
 <link rel="stylesheet" type="text/css" href="/inc/css/chat.css">
 <script>
+			var muted = false;
 			var ws;
 			function doit()
 			{
@@ -39,6 +40,7 @@ require_once '../common.php';
 					document.getElementById("chat").innerHTML += msg.data+"<br />";
                     document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
 					console.log("Mesage recived...");
+					if(!muted)document.getElementById('snd').play();
 				};
 				ws.onclose = function()
 				{
@@ -67,6 +69,10 @@ require_once '../common.php';
 			  	if(key == 13)
 				   	sendit();
 			}
+			function mute()
+			{
+				muted != muted;
+			}
 		</script>
 <?php
 #Place additional script or style or meta etc. in here
@@ -75,8 +81,12 @@ require_once '../common.php';
 <header>
     <input type="button" onClick="sendit();" value="Senden" class="button" />
     <input type="text" id="msg" placeholder="Ihre Nachricht: " onKeyDown='this.style.setProperty("background-color", "white", "important");'>
+	<input type="button" value="mute - Need a oo design @pueh" onClick="mute()" />
     <input style="float: right; margin-right: 100px; margin-top: 4px;" type="button" onClick="closeit();" value="Schliessen" class="button" />
 </header>
+<audio id="snd">
+	<source src="..\media\bell.mp3" type="audio/mpeg">
+</audio>
 <div id="chat"></div>
 <script type="text/javascript">
     doit();
