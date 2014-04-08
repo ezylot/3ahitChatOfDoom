@@ -23,6 +23,6 @@ echo '<p id="try">This is just some text to show that it is in front of the tool
 echo '<br /><input type="submit" class="awsome-button" value="Senden" />';
 echo '<div id="time"></div>';
 
-echo '<br /><br /><br /><a href="/HTML/websocket.php" class="tooltip" title="Hier gehts zum Chat">Chat</a>';
+echo '<br /><br /><br /><a href="HTML/websocket.php" class="tooltip" title="Hier gehts zum Chat">Chat</a>';
 System\HTML::printFooter();
 ?>

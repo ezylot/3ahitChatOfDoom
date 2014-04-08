@@ -13,9 +13,9 @@ require_once '../common.php';
 			{
 				document.getElementById("chat").innerHTML += "Connecting...<br />";
 				if(WebSocket)
-					ws = new WebSocket("ws://<?php require_once $_SERVER['DOCUMENT_ROOT'].'/settings.php'; echo WEBSOCKET_SERVER_IP.":"; echo WEBSOCKET_PORT; ?>/");
+					ws = new WebSocket("ws://<?php require_once '../settings.php'; echo WEBSOCKET_SERVER_IP.":"; echo WEBSOCKET_PORT; ?>/");
 				else
-					alert("Keine Browser unterst�tzung");
+					alert("Keine Browser unterst�tzung");1
 				
 				ws.onopen = function()
 				{
@@ -37,10 +37,10 @@ require_once '../common.php';
 				};
 				ws.onmessage = function(msg)
 				{
-					document.getElementById("chat").innerHTML += msg.data+"<br />";
-                    document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
-					console.log("Mesage recived...");
-					if(!muted)document.getElementById('snd').play();
+						document.getElementById("chat").innerHTML += msg.data+"<br />";
+						document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+						console.log("Mesage recived...");					
+						if(!muted)document.getElementById('snd').play();
 				};
 				ws.onclose = function()
 				{
@@ -71,7 +71,7 @@ require_once '../common.php';
 			}
 			function mute()
 			{
-				muted != muted;
+				muted = !muted;
 			}
 		</script>
 <?php
@@ -81,11 +81,11 @@ require_once '../common.php';
 <header>
     <input type="button" onClick="sendit();" value="Senden" class="button" />
     <input type="text" id="msg" placeholder="Ihre Nachricht: " onKeyDown='this.style.setProperty("background-color", "white", "important");'>
-	<input type="button" value="mute - Need a oo design @pueh" onClick="mute()" />
+	<input type="button" value="Toggle Muterino" onClick="mute()" class="button" />
     <input style="float: right; margin-right: 100px; margin-top: 4px;" type="button" onClick="closeit();" value="Schliessen" class="button" />
 </header>
 <audio id="snd">
-	<source src="..\media\bell.mp3" type="audio/mpeg">
+	<source src="../media/bell.mp3" type="audio/mpeg">
 </audio>
 <div id="chat"></div>
 <script type="text/javascript">

@@ -59,9 +59,9 @@ class Login {
     public function checkLogin($username, $password)
     {
         $DB = $GLOBALS['DB'];  
-        $query = "SELECT * FROM login WHERE user='".mysql_real_escape_string($username)."' AND password='".md5(mysql_real_escape_string($password))."'";
+        $query = "SELECT * FROM login WHERE user='".mysql_real_escape_string($username)."' AND password='".sha1((mysql_real_escape_string($password))."sha1AndSaltOfDoom44!")."'";
         $result = $DB->queryNoLog($query,true);
-        if(empty($result))
+		if(empty($result))
         {
                 return FALSE;
         }
@@ -101,10 +101,9 @@ class Login {
             die("BAD LUCK, HACKER!");
         }
         $DB = $GLOBALS['DB'];  
-        $query = "INSERT INTO login SET user='".mysql_real_escape_string($username)."', password='".md5(mysql_real_escape_string($password))."', email='".mysql_real_escape_string($email)."'";
+        $query = "INSERT INTO login SET user='".mysql_real_escape_string($username)."', password='".sha1((mysql_real_escape_string($password))."sha1AndSaltOfDoom44!")."', email='".mysql_real_escape_string($email)."'";
         $result = $DB->queryNoLog($query, true);
-        
-        if($result == false)
+		if($result == false)
                 return FALSE;
         else 
         {

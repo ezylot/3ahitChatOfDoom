@@ -11,14 +11,14 @@ require_once 'plugin_activation.php';
 
 define('DB_SERVER', "127.0.0.1");
 define('DB_USER',"root");
-define('DB_Password',"");
+define('DB_Password',"123456");
 define('DB_NAME',"testac");
 
 #Here start the configuration for the Real-Time-Chat.. aka websocket-chat
 define('WEBSOCKET_PORT', 17033);
-define('WEBSOCKET_MASTER_PASSWORD', "123456789");
-define('WEBSOCKET_SERVER_IP', "192.168.43.104");
-define('MAX_CLIENTS', 3);
+define('WEBSOCKET_MASTER_PASSWORD', "1234567890");
+define('WEBSOCKET_SERVER_IP', "192.168.7.69");
+define('MAX_CLIENTS', 30);
 
 //Max Message Length which can be send in the chat
 define('MAM_MESSAGE_LENGTH', 512);
@@ -33,6 +33,6 @@ else
 #1 ist ausgeschaltet
 #define('EMAIL_VERIFICATION', true);
 
-define('HTML_TITLE', "Das ist ein Titel");
+define('HTML_TITLE', "Welcome to the CheatClub");
 date_default_timezone_set('Europe/Berlin');
 ?>

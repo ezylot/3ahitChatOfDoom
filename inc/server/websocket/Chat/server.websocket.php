@@ -214,10 +214,35 @@ function process($user,$msg){
 }
 
 function send($client,$msg){
-  $msg = wrap("<span class='date'>".date("H:i:s", time())."</span> ".$msg);
+  $msg = wrap("<span class='date'>".date("H:i:s", time())."</span> ".urlToA(hashit($msg)));
   socket_write($client,$msg,strlen(($msg)));
 }
-
+function urlToA($string)
+{
+    preg_match_all('/(http(?:s?):\/\/[^\s]+)/', $string, $matches);
+    if($matches)
+    {
+        foreach($matches[0] as $match)
+        {
+            $hypertext = '<a style="color: #689CD9;" href="' . $match . '" target="_blank">' . $match . '</a>';
+            $string = str_replace($match, $hypertext, $string);
+        }
+    }
+    return $string;
+}  
+function hashit($string)
+{
+    preg_match_all('/(#[^\s]+)/', $string, $matches);
+    if($matches)
+    {
+        foreach($matches[0] as $match)
+        {
+            $hypertext = '<span style="color: #FF00BB;">' . $match . '</span>';
+            $string = str_replace($match, $hypertext, $string);
+        }
+    }
+    return $string;
+}  
 function sendall($source,$msg){
   global $sockets,$users;
   $n=count($users);

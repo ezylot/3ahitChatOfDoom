@@ -1,5 +1,5 @@
 <?php    
-
+header('refresh:1;url=/index.php');
 require_once '../common.php';
 
 if(!isset($_POST['username']) || empty($_POST['username']))
